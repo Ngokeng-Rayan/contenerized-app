@@ -161,7 +161,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DONTSTALKME }}/laravel-inventory-api
+          images: ${{ secrets.DOCKER_USERNAME }}/laravel-inventory-api
           tags: |
             type=ref,event=branch
             type=sha,prefix={{branch}}-
