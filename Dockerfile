@@ -1,8 +1,8 @@
 FROM php:8.2-fpm
 
 # Arguments
-ARG user
-ARG uid
+ARG user=laravel
+ARG uid=1000
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -32,4 +32,26 @@ RUN mkdir -p /home/$user/.composer && \
 # Set working directory
 WORKDIR /var/www
 
+# Copy application files
+COPY --chown=$user:$user . /var/www
+
+# Switch to user
+USER $user
+
+# Install dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# Generate optimized autoload files
+RUN php artisan config:cache && \
+    php artisan route:cache && \
+    php artisan view:cache
+
+# Switch back to root for final setup
+USER root
+
+# Set permissions
+RUN chown -R $user:www-data /var/www/storage /var/www/bootstrap/cache
+RUN chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+
+# Switch back to user
 USER $user
