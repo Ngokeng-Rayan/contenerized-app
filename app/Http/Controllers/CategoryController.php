@@ -13,6 +13,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::withCount('products')->get();
+
         return response()->json($categories);
     }
 
@@ -24,10 +25,11 @@ class CategoryController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:categories',
             'slug' => 'required|string|max:255|unique:categories',
-            'description' => 'nullable|string'
+            'description' => 'nullable|string',
         ]);
 
         $category = Category::create($validated);
+
         return response()->json($category, 201);
     }
 
@@ -45,12 +47,13 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $validated = $request->validate([
-            'name' => 'sometimes|required|string|max:255|unique:categories,name,' . $category->id,
-            'slug' => 'sometimes|required|string|max:255|unique:categories,slug,' . $category->id,
-            'description' => 'nullable|string'
+            'name' => 'sometimes|required|string|max:255|unique:categories,name,'.$category->id,
+            'slug' => 'sometimes|required|string|max:255|unique:categories,slug,'.$category->id,
+            'description' => 'nullable|string',
         ]);
 
         $category->update($validated);
+
         return response()->json($category);
     }
 
@@ -60,6 +63,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+
         return response()->json(['message' => 'Category deleted successfully']);
     }
 }

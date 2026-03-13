@@ -13,12 +13,12 @@ class Product extends Model
         'quantity',
         'category_id',
         'image',
-        'user_id'
+        'user_id',
     ];
 
     protected $casts = [
         'price' => 'decimal:2',
-        'quantity' => 'integer'
+        'quantity' => 'integer',
     ];
 
     public function user()

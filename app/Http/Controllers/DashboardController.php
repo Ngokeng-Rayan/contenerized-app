@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Product;
 use App\Models\Category;
-use App\Models\User;
+use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -35,7 +34,7 @@ class DashboardController extends Controller
                 ->with(['category'])
                 ->orderByRaw('price * quantity DESC')
                 ->take(5)
-                ->get()
+                ->get(),
         ];
 
         return response()->json($stats);

@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Product;
+use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
 {
@@ -20,7 +19,7 @@ class ProductSeeder extends Seeder
                 'price' => 1299.99,
                 'quantity' => 15,
                 'category' => 'Informatique',
-                'image' => 'laptop-dell.jpg'
+                'image' => 'laptop-dell.jpg',
             ],
             [
                 'name' => 'iPhone 15 Pro',
@@ -28,7 +27,7 @@ class ProductSeeder extends Seeder
                 'price' => 1199.00,
                 'quantity' => 25,
                 'category' => 'Téléphonie',
-                'image' => 'iphone-15.jpg'
+                'image' => 'iphone-15.jpg',
             ],
             [
                 'name' => 'Clavier mécanique RGB',
@@ -36,7 +35,7 @@ class ProductSeeder extends Seeder
                 'price' => 89.99,
                 'quantity' => 50,
                 'category' => 'Accessoires',
-                'image' => 'keyboard-rgb.jpg'
+                'image' => 'keyboard-rgb.jpg',
             ],
             [
                 'name' => 'Écran Samsung 27"',
@@ -44,7 +43,7 @@ class ProductSeeder extends Seeder
                 'price' => 349.99,
                 'quantity' => 20,
                 'category' => 'Informatique',
-                'image' => 'monitor-samsung.jpg'
+                'image' => 'monitor-samsung.jpg',
             ],
             [
                 'name' => 'Souris Logitech MX Master 3',
@@ -52,8 +51,8 @@ class ProductSeeder extends Seeder
                 'price' => 99.99,
                 'quantity' => 35,
                 'category' => 'Accessoires',
-                'image' => 'mouse-logitech.jpg'
-            ]
+                'image' => 'mouse-logitech.jpg',
+            ],
         ];
 
         foreach ($products as $product) {

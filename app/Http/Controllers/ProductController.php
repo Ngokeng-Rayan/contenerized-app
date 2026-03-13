@@ -16,7 +16,7 @@ class ProductController extends Controller
 
         // Recherche par nom
         if ($request->has('search')) {
-            $query->where('name', 'like', '%' . $request->search . '%');
+            $query->where('name', 'like', '%'.$request->search.'%');
         }
 
         // Filtrer par catégorie
@@ -43,6 +43,7 @@ class ProductController extends Controller
         $query->orderBy($sortBy, $sortOrder);
 
         $products = $query->paginate($request->get('per_page', 10));
+
         return response()->json($products);
     }
 
@@ -57,12 +58,12 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'quantity' => 'required|integer|min:0',
             'category_id' => 'nullable|exists:categories,id',
-            'image' => 'nullable|string|max:255'
+            'image' => 'nullable|string|max:255',
         ]);
 
         $validated['user_id'] = $request->user()->id;
         $product = Product::create($validated);
-        
+
         return response()->json($product->load(['user', 'category']), 201);
     }
 
@@ -90,10 +91,11 @@ class ProductController extends Controller
             'price' => 'sometimes|required|numeric|min:0',
             'quantity' => 'sometimes|required|integer|min:0',
             'category_id' => 'nullable|exists:categories,id',
-            'image' => 'nullable|string|max:255'
+            'image' => 'nullable|string|max:255',
         ]);
 
         $product->update($validated);
+
         return response()->json($product->load(['user', 'category']));
     }
 
@@ -108,6 +110,7 @@ class ProductController extends Controller
         }
 
         $product->delete();
+
         return response()->json(['message' => 'Product deleted successfully'], 200);
     }
 }
