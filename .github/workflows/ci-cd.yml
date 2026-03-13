@@ -63,8 +63,8 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-interaction --optimize-autoloader
 
       # Étape 5 : Installer PHPStan pour l'analyse statique
-      - name: 📊 Install PHPStan
-        run: composer require --dev phpstan/phpstan larastan/larastan --no-interaction
+      # - name: 📊 Install PHPStan
+      #   run: composer require --dev phpstan/phpstan larastan/larastan --no-interaction
 
       # Étape 6 : Copier le fichier .env pour les tests
       - name: 📄 Copy .env file
